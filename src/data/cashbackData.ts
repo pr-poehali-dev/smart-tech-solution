@@ -2,6 +2,7 @@ export interface Store {
   name: string
   cashback: string
   logo: string
+  conditions: string[]
 }
 
 export interface Category {
@@ -14,8 +15,9 @@ export interface Category {
 export interface Bank {
   id: string
   name: string
-  logo: string
+  logoSvg: string
   color: string
+  bgColor: string
   categories: Category[]
 }
 
@@ -23,18 +25,61 @@ export const banks: Bank[] = [
   {
     id: "alfa",
     name: "Альфа-Банк",
-    logo: "https://logo.clearbit.com/alfabank.ru",
     color: "#EF3124",
+    bgColor: "#FFF1F0",
+    logoSvg: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#EF3124"/>
+      <path d="M24 8L36 38H28.5L26 31H22L19.5 38H12L24 8ZM24 18L21.5 26H26.5L24 18Z" fill="white"/>
+    </svg>`,
     categories: [
       {
         id: "food",
         name: "Еда и рестораны",
         emoji: "🍔",
         stores: [
-          { name: "Яндекс Еда", cashback: "10%", logo: "https://logo.clearbit.com/eda.yandex.ru" },
-          { name: "Delivery Club", cashback: "7%", logo: "https://logo.clearbit.com/deliveryclub.ru" },
-          { name: "Вкусно и точка", cashback: "5%", logo: "https://logo.clearbit.com/mcdonalds.com" },
-          { name: "KFC", cashback: "5%", logo: "https://logo.clearbit.com/kfc.ru" },
+          {
+            name: "Яндекс Еда",
+            cashback: "10%",
+            logo: "https://avatars.mds.yandex.net/get-eda/3735388/2a00000188a48c5ba0e31a8888f9a0e81f50/orig",
+            conditions: [
+              "Оплата картой Альфа-Банк через приложение",
+              "Минимальная сумма заказа 500 ₽",
+              "Начисляется в течение 3 дней",
+              "Максимум 500 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Delivery Club",
+            cashback: "7%",
+            logo: "https://logo.clearbit.com/deliveryclub.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк онлайн",
+              "Минимальная сумма заказа 300 ₽",
+              "Начисляется на следующий день",
+              "Максимум 300 ₽ в месяц",
+            ],
+          },
+          {
+            name: "KFC",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/kfc.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в ресторане или приложении",
+              "Без ограничений по сумме заказа",
+              "Начисляется в течение 5 дней",
+              "Максимум 200 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Burger King",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/burgerking.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в ресторане или через сайт",
+              "Без ограничений по сумме",
+              "Начисляется в течение 3–5 рабочих дней",
+            ],
+          },
         ],
       },
       {
@@ -42,9 +87,37 @@ export const banks: Bank[] = [
         name: "Супермаркеты",
         emoji: "🛒",
         stores: [
-          { name: "Пятёрочка", cashback: "3%", logo: "https://logo.clearbit.com/pyaterochka.ru" },
-          { name: "Перекрёсток", cashback: "3%", logo: "https://logo.clearbit.com/perekrestok.ru" },
-          { name: "ВкусВилл", cashback: "2%", logo: "https://logo.clearbit.com/vkusvill.ru" },
+          {
+            name: "Пятёрочка",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/pyaterochka.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк на кассе",
+              "Без ограничений по сумме покупки",
+              "Начисляется в течение 5 дней",
+              "Совмещается с бонусами «Выручай-карты»",
+            ],
+          },
+          {
+            name: "ВкусВилл",
+            cashback: "2%",
+            logo: "https://logo.clearbit.com/vkusvill.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в магазине или приложении",
+              "Минимальная сумма покупки 200 ₽",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Перекрёсток",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/perekrestok.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк",
+              "Можно совместить с картой «Клуб Перекрёсток»",
+              "Начисляется в течение 5 рабочих дней",
+            ],
+          },
         ],
       },
       {
@@ -52,9 +125,39 @@ export const banks: Bank[] = [
         name: "Путешествия",
         emoji: "✈️",
         stores: [
-          { name: "Aviasales", cashback: "3%", logo: "https://logo.clearbit.com/aviasales.ru" },
-          { name: "Booking.com", cashback: "5%", logo: "https://logo.clearbit.com/booking.com" },
-          { name: "РЖД", cashback: "4%", logo: "https://logo.clearbit.com/rzd.ru" },
+          {
+            name: "Aviasales",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/aviasales.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк при бронировании",
+              "Кэшбэк начисляется после перелёта",
+              "Минимальная сумма 3 000 ₽",
+              "Начисляется в течение 30 дней",
+            ],
+          },
+          {
+            name: "Booking.com",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/booking.com",
+            conditions: [
+              "Оплата картой Альфа-Банк при бронировании",
+              "Начисляется после завершения поездки",
+              "Только невозвратные тарифы",
+              "Максимум 1 500 ₽ за бронирование",
+            ],
+          },
+          {
+            name: "РЖД",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/rzd.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк на сайте rzd.ru",
+              "Только электронные билеты",
+              "Начисляется после поездки",
+              "Максимум 1 000 ₽ за заказ",
+            ],
+          },
         ],
       },
       {
@@ -62,9 +165,38 @@ export const banks: Bank[] = [
         name: "Одежда и обувь",
         emoji: "👗",
         stores: [
-          { name: "Wildberries", cashback: "5%", logo: "https://logo.clearbit.com/wildberries.ru" },
-          { name: "OZON", cashback: "5%", logo: "https://logo.clearbit.com/ozon.ru" },
-          { name: "Lamoda", cashback: "6%", logo: "https://logo.clearbit.com/lamoda.ru" },
+          {
+            name: "Wildberries",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/wildberries.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк на сайте или в приложении",
+              "Кэшбэк начисляется после получения товара",
+              "Не действует на возвраты",
+              "Максимум 2 000 ₽ в месяц",
+            ],
+          },
+          {
+            name: "OZON",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/ozon.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк",
+              "Кэшбэк начисляется после подтверждения получения",
+              "Не суммируется с OZON-бонусами",
+              "Максимум 2 000 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Lamoda",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/lamoda.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк онлайн",
+              "После подтверждения получения заказа",
+              "Не действует при возврате товара",
+            ],
+          },
         ],
       },
       {
@@ -72,9 +204,37 @@ export const banks: Bank[] = [
         name: "Красота и здоровье",
         emoji: "💅",
         stores: [
-          { name: "Золотое Яблоко", cashback: "8%", logo: "https://logo.clearbit.com/goldapple.ru" },
-          { name: "Л'Этуаль", cashback: "5%", logo: "https://logo.clearbit.com/letu.ru" },
-          { name: "Аптека Горздрав", cashback: "4%", logo: "https://logo.clearbit.com/gorzdrav.org" },
+          {
+            name: "Золотое Яблоко",
+            cashback: "8%",
+            logo: "https://logo.clearbit.com/goldapple.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в магазине или онлайн",
+              "Минимальная сумма покупки 500 ₽",
+              "Начисляется в течение 5 дней",
+              "Суммируется с бонусами Золотого Яблока",
+            ],
+          },
+          {
+            name: "Л'Этуаль",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/letu.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк",
+              "Без ограничений по сумме",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Аптека 36.6",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/366.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в аптеке или онлайн",
+              "Минимальная сумма чека 300 ₽",
+              "Начисляется в течение 5 рабочих дней",
+            ],
+          },
         ],
       },
       {
@@ -82,9 +242,36 @@ export const banks: Bank[] = [
         name: "Электроника",
         emoji: "📱",
         stores: [
-          { name: "DNS", cashback: "3%", logo: "https://logo.clearbit.com/dns-shop.ru" },
-          { name: "М.Видео", cashback: "4%", logo: "https://logo.clearbit.com/mvideo.ru" },
-          { name: "Эльдорадо", cashback: "3%", logo: "https://logo.clearbit.com/eldorado.ru" },
+          {
+            name: "М.Видео",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/mvideo.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в магазине или онлайн",
+              "Начисляется после отказа от возврата (14 дней)",
+              "Максимум 3 000 ₽ за покупку",
+            ],
+          },
+          {
+            name: "DNS",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/dns-shop.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк",
+              "Начисляется после истечения срока возврата",
+              "Максимум 2 000 ₽ за покупку",
+            ],
+          },
+          {
+            name: "Эльдорадо",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/eldorado.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в магазине или онлайн",
+              "Не суммируется с акционными скидками",
+              "Начисляется в течение 14 дней",
+            ],
+          },
         ],
       },
       {
@@ -92,9 +279,37 @@ export const banks: Bank[] = [
         name: "Такси и транспорт",
         emoji: "🚕",
         stores: [
-          { name: "Яндекс Такси", cashback: "10%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "Ситимобил", cashback: "7%", logo: "https://logo.clearbit.com/citymobil.ru" },
-          { name: "Uber", cashback: "5%", logo: "https://logo.clearbit.com/uber.com" },
+          {
+            name: "Яндекс Такси",
+            cashback: "10%",
+            logo: "https://avatars.mds.yandex.net/get-bunker/281033/b94475b5c40fb2ab8b9b1e4e5e558fc3b2bea91f/orig",
+            conditions: [
+              "Оплата картой Альфа-Банк через приложение",
+              "Только безналичная оплата в приложении",
+              "Начисляется в течение 3 дней",
+              "Максимум 300 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Whoosh",
+            cashback: "7%",
+            logo: "https://logo.clearbit.com/whoosh.bike",
+            conditions: [
+              "Оплата картой Альфа-Банк в приложении",
+              "На все поездки без ограничений",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Делимобиль",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/delimobil.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в приложении",
+              "На аренду авто от 30 минут",
+              "Начисляется в течение 3 дней",
+            ],
+          },
         ],
       },
       {
@@ -102,9 +317,36 @@ export const banks: Bank[] = [
         name: "Развлечения",
         emoji: "🎬",
         stores: [
-          { name: "Кинопоиск", cashback: "5%", logo: "https://logo.clearbit.com/kinopoisk.ru" },
-          { name: "Афиша", cashback: "3%", logo: "https://logo.clearbit.com/afisha.ru" },
-          { name: "Ticketland", cashback: "4%", logo: "https://logo.clearbit.com/ticketland.ru" },
+          {
+            name: "Кинопоиск",
+            cashback: "5%",
+            logo: "https://avatars.mds.yandex.net/get-kinopoisk-hdimg/1600647/fc3e8a4c-8a87-47b1-a5ad-bc3fa51e3a22/orig",
+            conditions: [
+              "Оплата картой Альфа-Банк при подписке или покупке",
+              "Начисляется в течение 5 дней",
+              "Только на подписку, не на рекламный период",
+            ],
+          },
+          {
+            name: "IVI",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/ivi.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк при покупке подписки",
+              "Начисляется в течение 3 дней",
+              "Только первое продление в месяц",
+            ],
+          },
+          {
+            name: "Ticketland",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/ticketland.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк при покупке билетов",
+              "Кэшбэк начисляется после мероприятия",
+              "Максимум 500 ₽ за заказ",
+            ],
+          },
         ],
       },
       {
@@ -112,9 +354,36 @@ export const banks: Bank[] = [
         name: "Спорт",
         emoji: "🏋️",
         stores: [
-          { name: "Спортмастер", cashback: "5%", logo: "https://logo.clearbit.com/sportmaster.ru" },
-          { name: "Decathlon", cashback: "4%", logo: "https://logo.clearbit.com/decathlon.ru" },
-          { name: "Nike", cashback: "6%", logo: "https://logo.clearbit.com/nike.com" },
+          {
+            name: "Спортмастер",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/sportmaster.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в магазине или онлайн",
+              "Минимальная сумма покупки 1 000 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Decathlon",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/decathlon.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк",
+              "Без ограничений по сумме",
+              "Начисляется в течение 3 рабочих дней",
+            ],
+          },
+          {
+            name: "Nike",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/nike.com",
+            conditions: [
+              "Оплата картой Альфа-Банк на nike.com",
+              "Только полная цена, без скидочных товаров",
+              "Начисляется в течение 14 дней",
+            ],
+          },
         ],
       },
       {
@@ -122,9 +391,35 @@ export const banks: Bank[] = [
         name: "Дети и игрушки",
         emoji: "🧸",
         stores: [
-          { name: "Детский мир", cashback: "5%", logo: "https://logo.clearbit.com/detmir.ru" },
-          { name: "Кораблик", cashback: "4%", logo: "https://logo.clearbit.com/korablik.ru" },
-          { name: "Lego", cashback: "3%", logo: "https://logo.clearbit.com/lego.com" },
+          {
+            name: "Детский мир",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/detmir.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк в магазине или онлайн",
+              "Начисляется в течение 5 дней",
+              "Можно совместить с бонусами Детского мира",
+            ],
+          },
+          {
+            name: "Кораблик",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/korablik.ru",
+            conditions: [
+              "Оплата картой Альфа-Банк",
+              "Начисляется в течение 5 рабочих дней",
+            ],
+          },
+          {
+            name: "Lego",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/lego.com",
+            conditions: [
+              "Оплата картой Альфа-Банк на lego.com",
+              "Не действует на наборы со скидкой",
+              "Начисляется в течение 14 дней",
+            ],
+          },
         ],
       },
     ],
@@ -132,17 +427,49 @@ export const banks: Bank[] = [
   {
     id: "ibank",
     name: "И Банк",
-    logo: "https://logo.clearbit.com/ibank.ru",
     color: "#7C3AED",
+    bgColor: "#F3F0FF",
+    logoSvg: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#7C3AED"/>
+      <text x="24" y="32" text-anchor="middle" font-family="Arial" font-weight="800" font-size="22" fill="white">И</text>
+    </svg>`,
     categories: [
       {
         id: "food",
         name: "Еда и рестораны",
         emoji: "🍔",
         stores: [
-          { name: "Яндекс Еда", cashback: "8%", logo: "https://logo.clearbit.com/eda.yandex.ru" },
-          { name: "Burger King", cashback: "6%", logo: "https://logo.clearbit.com/burgerking.ru" },
-          { name: "Суши Wok", cashback: "7%", logo: "https://logo.clearbit.com/sushiwok.ru" },
+          {
+            name: "Яндекс Еда",
+            cashback: "8%",
+            logo: "https://avatars.mds.yandex.net/get-eda/3735388/2a00000188a48c5ba0e31a8888f9a0e81f50/orig",
+            conditions: [
+              "Оплата картой И Банка онлайн",
+              "Минимальная сумма заказа 400 ₽",
+              "Начисляется в течение 2 дней",
+              "Максимум 400 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Burger King",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/burgerking.ru",
+            conditions: [
+              "Оплата картой И Банка в ресторане или приложении",
+              "Без минимальной суммы",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Суши Wok",
+            cashback: "7%",
+            logo: "https://logo.clearbit.com/sushiwok.ru",
+            conditions: [
+              "Оплата картой И Банка онлайн или в ресторане",
+              "Минимальная сумма 600 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -150,9 +477,37 @@ export const banks: Bank[] = [
         name: "Супермаркеты",
         emoji: "🛒",
         stores: [
-          { name: "Магнит", cashback: "4%", logo: "https://logo.clearbit.com/magnit.ru" },
-          { name: "Лента", cashback: "3%", logo: "https://logo.clearbit.com/lenta.com" },
-          { name: "Ашан", cashback: "2%", logo: "https://logo.clearbit.com/auchan.ru" },
+          {
+            name: "Магнит",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/magnit.ru",
+            conditions: [
+              "Оплата картой И Банка на кассе",
+              "Без ограничений по сумме",
+              "Суммируется с бонусами Магнит-карты",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Лента",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/lenta.com",
+            conditions: [
+              "Оплата картой И Банка в гипермаркете или онлайн",
+              "Минимальная сумма чека 500 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Ашан",
+            cashback: "2%",
+            logo: "https://logo.clearbit.com/auchan.ru",
+            conditions: [
+              "Оплата картой И Банка на кассе",
+              "Без ограничений по сумме",
+              "Начисляется в течение 7 дней",
+            ],
+          },
         ],
       },
       {
@@ -160,9 +515,36 @@ export const banks: Bank[] = [
         name: "Путешествия",
         emoji: "✈️",
         stores: [
-          { name: "Tutu.ru", cashback: "4%", logo: "https://logo.clearbit.com/tutu.ru" },
-          { name: "OneTwoTrip", cashback: "5%", logo: "https://logo.clearbit.com/onetwotrip.com" },
-          { name: "Ostrovok", cashback: "6%", logo: "https://logo.clearbit.com/ostrovok.ru" },
+          {
+            name: "OneTwoTrip",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/onetwotrip.com",
+            conditions: [
+              "Оплата картой И Банка при бронировании",
+              "Начисляется после совершения поездки",
+              "Минимальная сумма 2 000 ₽",
+            ],
+          },
+          {
+            name: "Ostrovok",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/ostrovok.ru",
+            conditions: [
+              "Оплата картой И Банка онлайн",
+              "После завершения бронирования (check-out)",
+              "Максимум 2 000 ₽ за заказ",
+            ],
+          },
+          {
+            name: "Tutu.ru",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/tutu.ru",
+            conditions: [
+              "Оплата картой И Банка при покупке билетов",
+              "Только электронные билеты",
+              "Начисляется после поездки",
+            ],
+          },
         ],
       },
       {
@@ -170,9 +552,36 @@ export const banks: Bank[] = [
         name: "Одежда и обувь",
         emoji: "👗",
         stores: [
-          { name: "Zara", cashback: "5%", logo: "https://logo.clearbit.com/zara.com" },
-          { name: "H&M", cashback: "4%", logo: "https://logo.clearbit.com/hm.com" },
-          { name: "Befree", cashback: "6%", logo: "https://logo.clearbit.com/befree.ru" },
+          {
+            name: "H&M",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/hm.com",
+            conditions: [
+              "Оплата картой И Банка в магазине или онлайн",
+              "После истечения срока возврата (30 дней)",
+              "Не суммируется с распродажными товарами",
+            ],
+          },
+          {
+            name: "Befree",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/befree.ru",
+            conditions: [
+              "Оплата картой И Банка онлайн",
+              "Минимальная сумма заказа 1 000 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Zara",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/zara.com",
+            conditions: [
+              "Оплата картой И Банка в магазине или онлайн",
+              "После истечения срока возврата",
+              "Не действует на товары со скидкой свыше 50%",
+            ],
+          },
         ],
       },
       {
@@ -180,9 +589,36 @@ export const banks: Bank[] = [
         name: "Красота и здоровье",
         emoji: "💅",
         stores: [
-          { name: "Рив Гош", cashback: "6%", logo: "https://logo.clearbit.com/rivegauche.ru" },
-          { name: "Douglas", cashback: "5%", logo: "https://logo.clearbit.com/douglas.ru" },
-          { name: "СберАптека", cashback: "4%", logo: "https://logo.clearbit.com/eapteka.ru" },
+          {
+            name: "Рив Гош",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/rivegauche.ru",
+            conditions: [
+              "Оплата картой И Банка в магазине или онлайн",
+              "Минимальная сумма 500 ₽",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Douglas",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/douglas.ru",
+            conditions: [
+              "Оплата картой И Банка",
+              "Суммируется с бонусами программы лояльности",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "СберАптека",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/eapteka.ru",
+            conditions: [
+              "Оплата картой И Банка онлайн",
+              "Минимальная сумма заказа 400 ₽",
+              "Начисляется в течение 3 дней",
+            ],
+          },
         ],
       },
       {
@@ -190,9 +626,36 @@ export const banks: Bank[] = [
         name: "Электроника",
         emoji: "📱",
         stores: [
-          { name: "Apple", cashback: "3%", logo: "https://logo.clearbit.com/apple.com" },
-          { name: "Samsung", cashback: "4%", logo: "https://logo.clearbit.com/samsung.com" },
-          { name: "Citilink", cashback: "3%", logo: "https://logo.clearbit.com/citilink.ru" },
+          {
+            name: "Citilink",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/citilink.ru",
+            conditions: [
+              "Оплата картой И Банка в магазине или онлайн",
+              "После истечения срока возврата (14 дней)",
+              "Максимум 2 500 ₽ за покупку",
+            ],
+          },
+          {
+            name: "Samsung",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/samsung.com",
+            conditions: [
+              "Оплата картой И Банка на официальном сайте",
+              "Начисляется в течение 14 дней",
+              "Только товары по полной цене",
+            ],
+          },
+          {
+            name: "Apple",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/apple.com",
+            conditions: [
+              "Оплата картой И Банка на apple.com",
+              "Начисляется в течение 14 дней",
+              "Только устройства, не аксессуары",
+            ],
+          },
         ],
       },
       {
@@ -200,9 +663,37 @@ export const banks: Bank[] = [
         name: "Такси и транспорт",
         emoji: "🚕",
         stores: [
-          { name: "Яндекс Go", cashback: "8%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "BlaBlaCar", cashback: "5%", logo: "https://logo.clearbit.com/blablacar.ru" },
-          { name: "СберМобайл", cashback: "4%", logo: "https://logo.clearbit.com/sbermobile.ru" },
+          {
+            name: "Яндекс Go",
+            cashback: "8%",
+            logo: "https://avatars.mds.yandex.net/get-bunker/281033/b94475b5c40fb2ab8b9b1e4e5e558fc3b2bea91f/orig",
+            conditions: [
+              "Оплата картой И Банка через приложение",
+              "Только безналичные поездки",
+              "Начисляется в течение 3 дней",
+              "Максимум 400 ₽ в месяц",
+            ],
+          },
+          {
+            name: "BlaBlaCar",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/blablacar.ru",
+            conditions: [
+              "Оплата картой И Банка при бронировании поездки",
+              "Начисляется после подтверждения поездки водителем",
+              "Минимальная сумма 100 ₽",
+            ],
+          },
+          {
+            name: "Whoosh",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/whoosh.bike",
+            conditions: [
+              "Оплата картой И Банка в приложении",
+              "На все поездки",
+              "Начисляется в течение 3 дней",
+            ],
+          },
         ],
       },
       {
@@ -210,9 +701,35 @@ export const banks: Bank[] = [
         name: "Развлечения",
         emoji: "🎬",
         stores: [
-          { name: "IVI", cashback: "8%", logo: "https://logo.clearbit.com/ivi.ru" },
-          { name: "Okko", cashback: "6%", logo: "https://logo.clearbit.com/okko.tv" },
-          { name: "START", cashback: "5%", logo: "https://logo.clearbit.com/start.ru" },
+          {
+            name: "IVI",
+            cashback: "8%",
+            logo: "https://logo.clearbit.com/ivi.ru",
+            conditions: [
+              "Оплата картой И Банка при оформлении подписки",
+              "Только первое оформление или продление",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Okko",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/okko.tv",
+            conditions: [
+              "Оплата картой И Банка при покупке подписки",
+              "Не суммируется с промокодами",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "START",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/start.ru",
+            conditions: [
+              "Оплата картой И Банка при оформлении подписки",
+              "Начисляется в течение 3 дней",
+            ],
+          },
         ],
       },
       {
@@ -220,9 +737,36 @@ export const banks: Bank[] = [
         name: "Спорт",
         emoji: "🏋️",
         stores: [
-          { name: "Adidas", cashback: "6%", logo: "https://logo.clearbit.com/adidas.ru" },
-          { name: "Puma", cashback: "5%", logo: "https://logo.clearbit.com/puma.com" },
-          { name: "Спортмастер", cashback: "4%", logo: "https://logo.clearbit.com/sportmaster.ru" },
+          {
+            name: "Adidas",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/adidas.ru",
+            conditions: [
+              "Оплата картой И Банка на adidas.ru",
+              "Только товары по полной цене",
+              "Начисляется в течение 14 дней",
+            ],
+          },
+          {
+            name: "Puma",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/puma.com",
+            conditions: [
+              "Оплата картой И Банка на официальном сайте",
+              "Не суммируется с сезонными скидками",
+              "Начисляется в течение 14 дней",
+            ],
+          },
+          {
+            name: "Спортмастер",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/sportmaster.ru",
+            conditions: [
+              "Оплата картой И Банка в магазине или онлайн",
+              "Минимальная сумма 1 000 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -230,9 +774,35 @@ export const banks: Bank[] = [
         name: "Дети и игрушки",
         emoji: "🧸",
         stores: [
-          { name: "Детский мир", cashback: "6%", logo: "https://logo.clearbit.com/detmir.ru" },
-          { name: "Hamleys", cashback: "5%", logo: "https://logo.clearbit.com/hamleys.com" },
-          { name: "Chicco", cashback: "4%", logo: "https://logo.clearbit.com/chicco.ru" },
+          {
+            name: "Детский мир",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/detmir.ru",
+            conditions: [
+              "Оплата картой И Банка в магазине или онлайн",
+              "Суммируется с бонусами Детского мира",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Hamleys",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/hamleys.com",
+            conditions: [
+              "Оплата картой И Банка в магазине",
+              "Минимальная сумма чека 1 000 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Chicco",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/chicco.ru",
+            conditions: [
+              "Оплата картой И Банка онлайн",
+              "Начисляется в течение 7 дней после получения заказа",
+            ],
+          },
         ],
       },
     ],
@@ -240,17 +810,49 @@ export const banks: Bank[] = [
   {
     id: "sber",
     name: "Сбер",
-    logo: "https://logo.clearbit.com/sber.ru",
     color: "#21A038",
+    bgColor: "#F0FBF2",
+    logoSvg: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#21A038"/>
+      <path d="M35.5 16.5L32 19.5C30.5 17.5 28 16 24 16C18.5 16 14 20.5 14 26C14 31.5 18.5 36 24 36C28 36 31.5 33.5 33 30H26V26H38C38 33.5 31.5 40 24 40C16 40 10 34 10 26C10 18 16 12 24 12C29.5 12 33.5 13.5 35.5 16.5Z" fill="white"/>
+    </svg>`,
     categories: [
       {
         id: "food",
         name: "Еда и рестораны",
         emoji: "🍔",
         stores: [
-          { name: "СберМаркет", cashback: "10%", logo: "https://logo.clearbit.com/sbermarket.ru" },
-          { name: "Delivery Club", cashback: "5%", logo: "https://logo.clearbit.com/deliveryclub.ru" },
-          { name: "Domino's", cashback: "6%", logo: "https://logo.clearbit.com/dominos.ru" },
+          {
+            name: "СберМаркет",
+            cashback: "10%",
+            logo: "https://logo.clearbit.com/sbermarket.ru",
+            conditions: [
+              "Оплата картой Сбера через СберМаркет",
+              "Минимальная сумма заказа 500 ₽",
+              "Начисляется в течение 3 дней",
+              "Максимум 500 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Delivery Club",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/deliveryclub.ru",
+            conditions: [
+              "Оплата картой Сбера через приложение",
+              "Минимальная сумма заказа 300 ₽",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Domino's",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/dominos.ru",
+            conditions: [
+              "Оплата картой Сбера на сайте или в приложении",
+              "Без ограничений по сумме",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -258,9 +860,37 @@ export const banks: Bank[] = [
         name: "Супермаркеты",
         emoji: "🛒",
         stores: [
-          { name: "Пятёрочка", cashback: "5%", logo: "https://logo.clearbit.com/pyaterochka.ru" },
-          { name: "Магнит", cashback: "4%", logo: "https://logo.clearbit.com/magnit.ru" },
-          { name: "Окей", cashback: "3%", logo: "https://logo.clearbit.com/okmarket.ru" },
+          {
+            name: "Пятёрочка",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/pyaterochka.ru",
+            conditions: [
+              "Оплата картой Сбера на кассе",
+              "Суммируется с бонусами «Выручай-карты»",
+              "Начисляется в течение 5 дней",
+              "Максимум 500 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Магнит",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/magnit.ru",
+            conditions: [
+              "Оплата картой Сбера на кассе",
+              "Без ограничений по сумме",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Окей",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/okmarket.ru",
+            conditions: [
+              "Оплата картой Сбера",
+              "Минимальная сумма чека 300 ₽",
+              "Начисляется в течение 7 дней",
+            ],
+          },
         ],
       },
       {
@@ -268,9 +898,37 @@ export const banks: Bank[] = [
         name: "Путешествия",
         emoji: "✈️",
         stores: [
-          { name: "Сбертревел", cashback: "10%", logo: "https://logo.clearbit.com/sberbank.ru" },
-          { name: "Аэрофлот", cashback: "5%", logo: "https://logo.clearbit.com/aeroflot.ru" },
-          { name: "РЖД", cashback: "5%", logo: "https://logo.clearbit.com/rzd.ru" },
+          {
+            name: "СберТревел",
+            cashback: "10%",
+            logo: "https://logo.clearbit.com/sberbank.ru",
+            conditions: [
+              "Оплата картой Сбера через СберТревел",
+              "Начисляется после совершения поездки",
+              "Максимум 3 000 ₽ за заказ",
+              "Суммируется с бонусами СберСпасибо",
+            ],
+          },
+          {
+            name: "Аэрофлот",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/aeroflot.ru",
+            conditions: [
+              "Оплата картой Сбера на сайте aeroflot.ru",
+              "Только электронные билеты",
+              "Кэшбэк начисляется после перелёта",
+            ],
+          },
+          {
+            name: "РЖД",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/rzd.ru",
+            conditions: [
+              "Оплата картой Сбера на rzd.ru",
+              "Начисляется после совершения поездки",
+              "Максимум 1 000 ₽ за заказ",
+            ],
+          },
         ],
       },
       {
@@ -278,9 +936,37 @@ export const banks: Bank[] = [
         name: "Одежда и обувь",
         emoji: "👗",
         stores: [
-          { name: "Wildberries", cashback: "6%", logo: "https://logo.clearbit.com/wildberries.ru" },
-          { name: "OZON", cashback: "6%", logo: "https://logo.clearbit.com/ozon.ru" },
-          { name: "Gloria Jeans", cashback: "5%", logo: "https://logo.clearbit.com/gloriajeans.ru" },
+          {
+            name: "Wildberries",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/wildberries.ru",
+            conditions: [
+              "Оплата картой Сбера через СберПэй или на сайте",
+              "Кэшбэк после подтверждения получения товара",
+              "Не суммируется с промокодами",
+              "Максимум 2 000 ₽ в месяц",
+            ],
+          },
+          {
+            name: "OZON",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/ozon.ru",
+            conditions: [
+              "Оплата картой Сбера онлайн",
+              "Кэшбэк начисляется после получения заказа",
+              "Не действует на электронику",
+              "Максимум 2 000 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Gloria Jeans",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/gloriajeans.ru",
+            conditions: [
+              "Оплата картой Сбера в магазине или онлайн",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -288,9 +974,35 @@ export const banks: Bank[] = [
         name: "Красота и здоровье",
         emoji: "💅",
         stores: [
-          { name: "Аптека.ру", cashback: "6%", logo: "https://logo.clearbit.com/apteka.ru" },
-          { name: "Золотое Яблоко", cashback: "7%", logo: "https://logo.clearbit.com/goldapple.ru" },
-          { name: "Ноготочки", cashback: "5%", logo: "https://logo.clearbit.com/nogotochki.ru" },
+          {
+            name: "Аптека.ру",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/apteka.ru",
+            conditions: [
+              "Оплата картой Сбера онлайн",
+              "Минимальная сумма заказа 400 ₽",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Золотое Яблоко",
+            cashback: "7%",
+            logo: "https://logo.clearbit.com/goldapple.ru",
+            conditions: [
+              "Оплата картой Сбера в магазине или онлайн",
+              "Суммируется с бонусами Золотого Яблока",
+              "Минимальная сумма 500 ₽",
+            ],
+          },
+          {
+            name: "Ноготочки",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/nogotochki.ru",
+            conditions: [
+              "Оплата картой Сбера в салоне",
+              "Начисляется в течение 3 дней",
+            ],
+          },
         ],
       },
       {
@@ -298,9 +1010,37 @@ export const banks: Bank[] = [
         name: "Электроника",
         emoji: "📱",
         stores: [
-          { name: "СберМегаМаркет", cashback: "8%", logo: "https://logo.clearbit.com/megamarket.ru" },
-          { name: "М.Видео", cashback: "5%", logo: "https://logo.clearbit.com/mvideo.ru" },
-          { name: "DNS", cashback: "4%", logo: "https://logo.clearbit.com/dns-shop.ru" },
+          {
+            name: "СберМегаМаркет",
+            cashback: "8%",
+            logo: "https://logo.clearbit.com/megamarket.ru",
+            conditions: [
+              "Оплата картой Сбера на СберМегаМаркет",
+              "Суммируется с бонусами СберСпасибо",
+              "Начисляется после получения товара",
+              "Максимум 3 000 ₽ за заказ",
+            ],
+          },
+          {
+            name: "М.Видео",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/mvideo.ru",
+            conditions: [
+              "Оплата картой Сбера в магазине или онлайн",
+              "После истечения срока возврата (14 дней)",
+              "Максимум 3 000 ₽ за покупку",
+            ],
+          },
+          {
+            name: "DNS",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/dns-shop.ru",
+            conditions: [
+              "Оплата картой Сбера",
+              "Начисляется после истечения срока возврата",
+              "Максимум 2 500 ₽ за покупку",
+            ],
+          },
         ],
       },
       {
@@ -308,9 +1048,37 @@ export const banks: Bank[] = [
         name: "Такси и транспорт",
         emoji: "🚕",
         stores: [
-          { name: "Яндекс Такси", cashback: "7%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "Ситимобил", cashback: "8%", logo: "https://logo.clearbit.com/citymobil.ru" },
-          { name: "Whoosh", cashback: "5%", logo: "https://logo.clearbit.com/whoosh.bike" },
+          {
+            name: "Яндекс Такси",
+            cashback: "7%",
+            logo: "https://avatars.mds.yandex.net/get-bunker/281033/b94475b5c40fb2ab8b9b1e4e5e558fc3b2bea91f/orig",
+            conditions: [
+              "Оплата картой Сбера через приложение",
+              "Только безналичные поездки",
+              "Начисляется в течение 3 дней",
+              "Максимум 350 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Ситимобил",
+            cashback: "8%",
+            logo: "https://logo.clearbit.com/citymobil.ru",
+            conditions: [
+              "Оплата картой Сбера в приложении",
+              "На все поездки без ограничений",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Whoosh",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/whoosh.bike",
+            conditions: [
+              "Оплата картой Сбера в приложении Whoosh",
+              "На все поездки",
+              "Начисляется в течение 3 дней",
+            ],
+          },
         ],
       },
       {
@@ -318,9 +1086,35 @@ export const banks: Bank[] = [
         name: "Развлечения",
         emoji: "🎬",
         stores: [
-          { name: "Кинопоиск", cashback: "10%", logo: "https://logo.clearbit.com/kinopoisk.ru" },
-          { name: "Сбер Звук", cashback: "8%", logo: "https://logo.clearbit.com/sber.ru" },
-          { name: "Rambler Кино", cashback: "5%", logo: "https://logo.clearbit.com/rambler.ru" },
+          {
+            name: "Кинопоиск",
+            cashback: "10%",
+            logo: "https://avatars.mds.yandex.net/get-kinopoisk-hdimg/1600647/fc3e8a4c-8a87-47b1-a5ad-bc3fa51e3a22/orig",
+            conditions: [
+              "Оплата картой Сбера при покупке подписки",
+              "Суммируется с бонусами СберСпасибо",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Сбер Звук",
+            cashback: "8%",
+            logo: "https://logo.clearbit.com/sber.ru",
+            conditions: [
+              "Оплата картой Сбера при оформлении подписки",
+              "Начисляется в течение 3 дней",
+              "Только новые подписки",
+            ],
+          },
+          {
+            name: "Rambler Кино",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/rambler.ru",
+            conditions: [
+              "Оплата картой Сбера при покупке подписки",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -328,9 +1122,36 @@ export const banks: Bank[] = [
         name: "Спорт",
         emoji: "🏋️",
         stores: [
-          { name: "Спортмастер", cashback: "6%", logo: "https://logo.clearbit.com/sportmaster.ru" },
-          { name: "Adidas", cashback: "5%", logo: "https://logo.clearbit.com/adidas.ru" },
-          { name: "Планета Фитнес", cashback: "4%", logo: "https://logo.clearbit.com/planetafitness.ru" },
+          {
+            name: "Спортмастер",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/sportmaster.ru",
+            conditions: [
+              "Оплата картой Сбера в магазине или онлайн",
+              "Суммируется с баллами программы лояльности",
+              "Минимальная сумма 1 000 ₽",
+            ],
+          },
+          {
+            name: "Adidas",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/adidas.ru",
+            conditions: [
+              "Оплата картой Сбера на adidas.ru",
+              "Только товары по полной цене",
+              "Начисляется в течение 14 дней",
+            ],
+          },
+          {
+            name: "Планета Фитнес",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/planetafitness.ru",
+            conditions: [
+              "Оплата картой Сбера при покупке абонемента",
+              "Не суммируется с акционными ценами",
+              "Начисляется в течение 7 дней",
+            ],
+          },
         ],
       },
       {
@@ -338,9 +1159,35 @@ export const banks: Bank[] = [
         name: "Дети и игрушки",
         emoji: "🧸",
         stores: [
-          { name: "Детский мир", cashback: "7%", logo: "https://logo.clearbit.com/detmir.ru" },
-          { name: "KidZania", cashback: "5%", logo: "https://logo.clearbit.com/kidzania.ru" },
-          { name: "ToysRUs", cashback: "4%", logo: "https://logo.clearbit.com/toysrus.com" },
+          {
+            name: "Детский мир",
+            cashback: "7%",
+            logo: "https://logo.clearbit.com/detmir.ru",
+            conditions: [
+              "Оплата картой Сбера в магазине или онлайн",
+              "Суммируется с бонусами Детского мира",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "KidZania",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/kidzania.ru",
+            conditions: [
+              "Оплата картой Сбера при покупке билетов",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Lego",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/lego.com",
+            conditions: [
+              "Оплата картой Сбера на lego.com",
+              "Только товары по полной цене",
+              "Начисляется в течение 14 дней",
+            ],
+          },
         ],
       },
     ],
@@ -348,17 +1195,49 @@ export const banks: Bank[] = [
   {
     id: "vtb",
     name: "ВТБ",
-    logo: "https://logo.clearbit.com/vtb.ru",
     color: "#009FDF",
+    bgColor: "#EFF9FF",
+    logoSvg: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#009FDF"/>
+      <path d="M12 14H36V19H27V34H21V19H12V14Z" fill="white"/>
+    </svg>`,
     categories: [
       {
         id: "food",
         name: "Еда и рестораны",
         emoji: "🍔",
         stores: [
-          { name: "Яндекс Еда", cashback: "9%", logo: "https://logo.clearbit.com/eda.yandex.ru" },
-          { name: "Subway", cashback: "7%", logo: "https://logo.clearbit.com/subway.com" },
-          { name: "Росинтер", cashback: "6%", logo: "https://logo.clearbit.com/rosinter.ru" },
+          {
+            name: "Яндекс Еда",
+            cashback: "9%",
+            logo: "https://avatars.mds.yandex.net/get-eda/3735388/2a00000188a48c5ba0e31a8888f9a0e81f50/orig",
+            conditions: [
+              "Оплата картой ВТБ через приложение",
+              "Минимальная сумма заказа 400 ₽",
+              "Начисляется в течение 3 дней",
+              "Максимум 450 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Subway",
+            cashback: "7%",
+            logo: "https://logo.clearbit.com/subway.com",
+            conditions: [
+              "Оплата картой ВТБ в ресторане или онлайн",
+              "Без минимальной суммы",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Росинтер",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/rosinter.ru",
+            conditions: [
+              "Оплата картой ВТБ в ресторанах сети",
+              "Минимальная сумма чека 800 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -366,9 +1245,36 @@ export const banks: Bank[] = [
         name: "Супермаркеты",
         emoji: "🛒",
         stores: [
-          { name: "Перекрёсток", cashback: "4%", logo: "https://logo.clearbit.com/perekrestok.ru" },
-          { name: "Карусель", cashback: "3%", logo: "https://logo.clearbit.com/karusel.ru" },
-          { name: "ВкусВилл", cashback: "3%", logo: "https://logo.clearbit.com/vkusvill.ru" },
+          {
+            name: "Перекрёсток",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/perekrestok.ru",
+            conditions: [
+              "Оплата картой ВТБ на кассе или онлайн",
+              "Суммируется с картой «Клуб Перекрёсток»",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "ВкусВилл",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/vkusvill.ru",
+            conditions: [
+              "Оплата картой ВТБ в магазине или приложении",
+              "Минимальная сумма 200 ₽",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Карусель",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/karusel.ru",
+            conditions: [
+              "Оплата картой ВТБ на кассе",
+              "Без ограничений по сумме",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -376,9 +1282,37 @@ export const banks: Bank[] = [
         name: "Путешествия",
         emoji: "✈️",
         stores: [
-          { name: "Мир Путешествий", cashback: "8%", logo: "https://logo.clearbit.com/vtb.ru" },
-          { name: "S7", cashback: "5%", logo: "https://logo.clearbit.com/s7.ru" },
-          { name: "Тинькофф Путешествия", cashback: "4%", logo: "https://logo.clearbit.com/tinkoff.ru" },
+          {
+            name: "Мультибонус (ВТБ)",
+            cashback: "8%",
+            logo: "https://logo.clearbit.com/vtb.ru",
+            conditions: [
+              "Оплата картой ВТБ через Мультибонус",
+              "Начисляется после совершения поездки",
+              "Максимум 3 000 ₽ за заказ",
+              "Суммируется с милями Мультибонус",
+            ],
+          },
+          {
+            name: "S7 Airlines",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/s7.ru",
+            conditions: [
+              "Оплата картой ВТБ на s7.ru",
+              "Начисляется после перелёта",
+              "Не суммируется с промокодами",
+            ],
+          },
+          {
+            name: "OneTwoTrip",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/onetwotrip.com",
+            conditions: [
+              "Оплата картой ВТБ при бронировании",
+              "Минимальная сумма 2 000 ₽",
+              "Начисляется после совершения поездки",
+            ],
+          },
         ],
       },
       {
@@ -386,9 +1320,35 @@ export const banks: Bank[] = [
         name: "Одежда и обувь",
         emoji: "👗",
         stores: [
-          { name: "OZON", cashback: "7%", logo: "https://logo.clearbit.com/ozon.ru" },
-          { name: "Rendez-Vous", cashback: "5%", logo: "https://logo.clearbit.com/rendez-vous.ru" },
-          { name: "Kari", cashback: "4%", logo: "https://logo.clearbit.com/kari.com" },
+          {
+            name: "OZON",
+            cashback: "7%",
+            logo: "https://logo.clearbit.com/ozon.ru",
+            conditions: [
+              "Оплата картой ВТБ онлайн",
+              "Начисляется после подтверждения получения",
+              "Максимум 2 500 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Rendez-Vous",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/rendez-vous.ru",
+            conditions: [
+              "Оплата картой ВТБ в магазине или онлайн",
+              "Суммируется с программой лояльности",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Kari",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/kari.com",
+            conditions: [
+              "Оплата картой ВТБ в магазине или онлайн",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -396,9 +1356,36 @@ export const banks: Bank[] = [
         name: "Красота и здоровье",
         emoji: "💅",
         stores: [
-          { name: "Л'Этуаль", cashback: "6%", logo: "https://logo.clearbit.com/letu.ru" },
-          { name: "Medsi", cashback: "5%", logo: "https://logo.clearbit.com/medsi.ru" },
-          { name: "36.6", cashback: "4%", logo: "https://logo.clearbit.com/366.ru" },
+          {
+            name: "Л'Этуаль",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/letu.ru",
+            conditions: [
+              "Оплата картой ВТБ в магазине или онлайн",
+              "Без ограничений по сумме",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Medsi",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/medsi.ru",
+            conditions: [
+              "Оплата картой ВТБ в клинике",
+              "На все медицинские услуги",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Аптека 36.6",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/366.ru",
+            conditions: [
+              "Оплата картой ВТБ в аптеке или онлайн",
+              "Минимальная сумма 300 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -406,9 +1393,35 @@ export const banks: Bank[] = [
         name: "Электроника",
         emoji: "📱",
         stores: [
-          { name: "М.Видео", cashback: "6%", logo: "https://logo.clearbit.com/mvideo.ru" },
-          { name: "Эльдорадо", cashback: "5%", logo: "https://logo.clearbit.com/eldorado.ru" },
-          { name: "Связной", cashback: "4%", logo: "https://logo.clearbit.com/svyaznoy.ru" },
+          {
+            name: "М.Видео",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/mvideo.ru",
+            conditions: [
+              "Оплата картой ВТБ в магазине или онлайн",
+              "После истечения срока возврата (14 дней)",
+              "Максимум 4 000 ₽ за покупку",
+            ],
+          },
+          {
+            name: "Эльдорадо",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/eldorado.ru",
+            conditions: [
+              "Оплата картой ВТБ",
+              "Не суммируется с акционными скидками",
+              "Начисляется в течение 14 дней",
+            ],
+          },
+          {
+            name: "Связной",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/svyaznoy.ru",
+            conditions: [
+              "Оплата картой ВТБ в магазине или онлайн",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -416,9 +1429,37 @@ export const banks: Bank[] = [
         name: "Такси и транспорт",
         emoji: "🚕",
         stores: [
-          { name: "Uber", cashback: "8%", logo: "https://logo.clearbit.com/uber.com" },
-          { name: "Яндекс Такси", cashback: "6%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "Делимобиль", cashback: "5%", logo: "https://logo.clearbit.com/delimobil.ru" },
+          {
+            name: "Uber",
+            cashback: "8%",
+            logo: "https://logo.clearbit.com/uber.com",
+            conditions: [
+              "Оплата картой ВТБ через приложение",
+              "Только безналичные поездки",
+              "Начисляется в течение 3 дней",
+              "Максимум 400 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Яндекс Такси",
+            cashback: "6%",
+            logo: "https://avatars.mds.yandex.net/get-bunker/281033/b94475b5c40fb2ab8b9b1e4e5e558fc3b2bea91f/orig",
+            conditions: [
+              "Оплата картой ВТБ через приложение",
+              "Только безналичные поездки",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Делимобиль",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/delimobil.ru",
+            conditions: [
+              "Оплата картой ВТБ в приложении",
+              "На аренду авто от 30 минут",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -426,9 +1467,34 @@ export const banks: Bank[] = [
         name: "Развлечения",
         emoji: "🎬",
         stores: [
-          { name: "Okko", cashback: "8%", logo: "https://logo.clearbit.com/okko.tv" },
-          { name: "ЛитРес", cashback: "6%", logo: "https://logo.clearbit.com/litres.ru" },
-          { name: "2ГИС", cashback: "4%", logo: "https://logo.clearbit.com/2gis.ru" },
+          {
+            name: "Okko",
+            cashback: "8%",
+            logo: "https://logo.clearbit.com/okko.tv",
+            conditions: [
+              "Оплата картой ВТБ при покупке подписки",
+              "Не суммируется с промокодами",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "ЛитРес",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/litres.ru",
+            conditions: [
+              "Оплата картой ВТБ при покупке книг или подписки",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Кинопоиск",
+            cashback: "5%",
+            logo: "https://avatars.mds.yandex.net/get-kinopoisk-hdimg/1600647/fc3e8a4c-8a87-47b1-a5ad-bc3fa51e3a22/orig",
+            conditions: [
+              "Оплата картой ВТБ при покупке подписки или фильма",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -436,9 +1502,36 @@ export const banks: Bank[] = [
         name: "Спорт",
         emoji: "🏋️",
         stores: [
-          { name: "Decathlon", cashback: "6%", logo: "https://logo.clearbit.com/decathlon.ru" },
-          { name: "Reebok", cashback: "5%", logo: "https://logo.clearbit.com/reebok.ru" },
-          { name: "World Class", cashback: "4%", logo: "https://logo.clearbit.com/worldclass.ru" },
+          {
+            name: "Decathlon",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/decathlon.ru",
+            conditions: [
+              "Оплата картой ВТБ в магазине или онлайн",
+              "Без ограничений по сумме",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Reebok",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/reebok.ru",
+            conditions: [
+              "Оплата картой ВТБ на reebok.ru",
+              "Только товары по полной цене",
+              "Начисляется в течение 14 дней",
+            ],
+          },
+          {
+            name: "World Class",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/worldclass.ru",
+            conditions: [
+              "Оплата картой ВТБ при покупке абонемента",
+              "Не суммируется с акциями",
+              "Начисляется в течение 7 дней",
+            ],
+          },
         ],
       },
       {
@@ -446,9 +1539,35 @@ export const banks: Bank[] = [
         name: "Дети и игрушки",
         emoji: "🧸",
         stores: [
-          { name: "Детский мир", cashback: "6%", logo: "https://logo.clearbit.com/detmir.ru" },
-          { name: "Mothercare", cashback: "5%", logo: "https://logo.clearbit.com/mothercare.com" },
-          { name: "Fisher-Price", cashback: "4%", logo: "https://logo.clearbit.com/fisher-price.com" },
+          {
+            name: "Детский мир",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/detmir.ru",
+            conditions: [
+              "Оплата картой ВТБ в магазине или онлайн",
+              "Суммируется с бонусами Детского мира",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Mothercare",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/mothercare.com",
+            conditions: [
+              "Оплата картой ВТБ в магазине или онлайн",
+              "Начисляется в течение 7 дней",
+            ],
+          },
+          {
+            name: "Lego",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/lego.com",
+            conditions: [
+              "Оплата картой ВТБ на lego.com",
+              "Только товары по полной цене",
+              "Начисляется в течение 14 дней",
+            ],
+          },
         ],
       },
     ],
@@ -456,17 +1575,50 @@ export const banks: Bank[] = [
   {
     id: "yandex",
     name: "Яндекс Банк",
-    logo: "https://logo.clearbit.com/yandex.ru",
     color: "#FC3F1D",
+    bgColor: "#FFF3F0",
+    logoSvg: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#FC3F1D"/>
+      <path d="M27.5 10H22V38H27.5V27H29.5L35 38H41L34.5 26C37.5 24.5 39 22 39 18.5C39 13.5 35 10 27.5 10ZM27.5 22V15H29C31.5 15 33.5 16.5 33.5 18.5C33.5 20.5 31.5 22 29 22H27.5Z" fill="white"/>
+      <path d="M14 38H20L20 10H14V38Z" fill="white" opacity="0.6"/>
+    </svg>`,
     categories: [
       {
         id: "food",
         name: "Еда и рестораны",
         emoji: "🍔",
         stores: [
-          { name: "Яндекс Еда", cashback: "15%", logo: "https://logo.clearbit.com/eda.yandex.ru" },
-          { name: "Лавка", cashback: "12%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "Самокат", cashback: "8%", logo: "https://logo.clearbit.com/samokat.ru" },
+          {
+            name: "Яндекс Еда",
+            cashback: "15%",
+            logo: "https://avatars.mds.yandex.net/get-eda/3735388/2a00000188a48c5ba0e31a8888f9a0e81f50/orig",
+            conditions: [
+              "Оплата картой Яндекс Банка в приложении Яндекс Еда",
+              "Начисляется автоматически после каждого заказа",
+              "Максимум 600 ₽ в месяц",
+              "Суммируется с Яндекс Плюс",
+            ],
+          },
+          {
+            name: "Яндекс Лавка",
+            cashback: "12%",
+            logo: "https://logo.clearbit.com/yandex.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка в приложении Лавка",
+              "На все заказы без ограничений по сумме",
+              "Начисляется в течение 2 дней",
+            ],
+          },
+          {
+            name: "Самокат",
+            cashback: "8%",
+            logo: "https://logo.clearbit.com/samokat.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка через приложение",
+              "Минимальная сумма заказа 300 ₽",
+              "Начисляется в течение 3 дней",
+            ],
+          },
         ],
       },
       {
@@ -474,9 +1626,36 @@ export const banks: Bank[] = [
         name: "Супермаркеты",
         emoji: "🛒",
         stores: [
-          { name: "Яндекс Маркет", cashback: "10%", logo: "https://logo.clearbit.com/market.yandex.ru" },
-          { name: "Пятёрочка", cashback: "4%", logo: "https://logo.clearbit.com/pyaterochka.ru" },
-          { name: "Магнит", cashback: "3%", logo: "https://logo.clearbit.com/magnit.ru" },
+          {
+            name: "Яндекс Маркет",
+            cashback: "10%",
+            logo: "https://logo.clearbit.com/market.yandex.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка на Яндекс Маркете",
+              "Суммируется с баллами Яндекс Плюс",
+              "Начисляется после получения заказа",
+              "Максимум 3 000 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Пятёрочка",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/pyaterochka.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка на кассе",
+              "Без ограничений по сумме",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Магнит",
+            cashback: "3%",
+            logo: "https://logo.clearbit.com/magnit.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка на кассе",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -484,9 +1663,37 @@ export const banks: Bank[] = [
         name: "Путешествия",
         emoji: "✈️",
         stores: [
-          { name: "Яндекс Путешествия", cashback: "12%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "Яндекс Отели", cashback: "10%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "Aviasales", cashback: "5%", logo: "https://logo.clearbit.com/aviasales.ru" },
+          {
+            name: "Яндекс Путешествия",
+            cashback: "12%",
+            logo: "https://logo.clearbit.com/yandex.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "Суммируется с баллами Яндекс Плюс",
+              "Кэшбэк начисляется после поездки",
+              "Максимум 5 000 ₽ за заказ",
+            ],
+          },
+          {
+            name: "Яндекс Отели",
+            cashback: "10%",
+            logo: "https://logo.clearbit.com/yandex.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка при бронировании",
+              "После check-out из отеля",
+              "Максимум 3 000 ₽ за бронирование",
+            ],
+          },
+          {
+            name: "Aviasales",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/aviasales.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка при покупке билетов",
+              "Начисляется после перелёта",
+              "Минимальная сумма 3 000 ₽",
+            ],
+          },
         ],
       },
       {
@@ -494,9 +1701,36 @@ export const banks: Bank[] = [
         name: "Одежда и обувь",
         emoji: "👗",
         stores: [
-          { name: "Яндекс Маркет", cashback: "10%", logo: "https://logo.clearbit.com/market.yandex.ru" },
-          { name: "Wildberries", cashback: "5%", logo: "https://logo.clearbit.com/wildberries.ru" },
-          { name: "OZON", cashback: "5%", logo: "https://logo.clearbit.com/ozon.ru" },
+          {
+            name: "Яндекс Маркет",
+            cashback: "10%",
+            logo: "https://logo.clearbit.com/market.yandex.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "Суммируется с баллами Яндекс Плюс",
+              "Начисляется после получения заказа",
+            ],
+          },
+          {
+            name: "Wildberries",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/wildberries.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "Начисляется после подтверждения получения",
+              "Не суммируется с промокодами",
+            ],
+          },
+          {
+            name: "OZON",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/ozon.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "Начисляется после получения заказа",
+              "Максимум 2 000 ₽ в месяц",
+            ],
+          },
         ],
       },
       {
@@ -504,9 +1738,37 @@ export const banks: Bank[] = [
         name: "Красота и здоровье",
         emoji: "💅",
         stores: [
-          { name: "Яндекс Аптека", cashback: "10%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "Золотое Яблоко", cashback: "6%", logo: "https://logo.clearbit.com/goldapple.ru" },
-          { name: "Л'Этуаль", cashback: "5%", logo: "https://logo.clearbit.com/letu.ru" },
+          {
+            name: "Яндекс Аптека",
+            cashback: "10%",
+            logo: "https://logo.clearbit.com/yandex.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка в приложении",
+              "Суммируется с баллами Яндекс Плюс",
+              "Начисляется в течение 3 дней",
+              "Максимум 1 000 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Золотое Яблоко",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/goldapple.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка в магазине или онлайн",
+              "Минимальная сумма 500 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Л'Этуаль",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/letu.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "Без ограничений по сумме",
+              "Начисляется в течение 3 дней",
+            ],
+          },
         ],
       },
       {
@@ -514,9 +1776,37 @@ export const banks: Bank[] = [
         name: "Электроника",
         emoji: "📱",
         stores: [
-          { name: "Яндекс Маркет", cashback: "12%", logo: "https://logo.clearbit.com/market.yandex.ru" },
-          { name: "DNS", cashback: "4%", logo: "https://logo.clearbit.com/dns-shop.ru" },
-          { name: "М.Видео", cashback: "4%", logo: "https://logo.clearbit.com/mvideo.ru" },
+          {
+            name: "Яндекс Маркет",
+            cashback: "12%",
+            logo: "https://logo.clearbit.com/market.yandex.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "Максимум 5 000 ₽ за покупку",
+              "Суммируется с баллами Яндекс Плюс",
+              "Начисляется после получения заказа",
+            ],
+          },
+          {
+            name: "DNS",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/dns-shop.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "Начисляется после истечения срока возврата",
+              "Максимум 2 500 ₽ за покупку",
+            ],
+          },
+          {
+            name: "М.Видео",
+            cashback: "4%",
+            logo: "https://logo.clearbit.com/mvideo.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "После истечения срока возврата (14 дней)",
+              "Максимум 3 000 ₽ за покупку",
+            ],
+          },
         ],
       },
       {
@@ -524,9 +1814,37 @@ export const banks: Bank[] = [
         name: "Такси и транспорт",
         emoji: "🚕",
         stores: [
-          { name: "Яндекс Такси", cashback: "15%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "Яндекс Go", cashback: "15%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "Яндекс Самокаты", cashback: "10%", logo: "https://logo.clearbit.com/yandex.ru" },
+          {
+            name: "Яндекс Такси",
+            cashback: "15%",
+            logo: "https://avatars.mds.yandex.net/get-bunker/281033/b94475b5c40fb2ab8b9b1e4e5e558fc3b2bea91f/orig",
+            conditions: [
+              "Оплата картой Яндекс Банка в приложении",
+              "Суммируется с баллами Яндекс Плюс",
+              "Начисляется после каждой поездки",
+              "Максимум 750 ₽ в месяц",
+            ],
+          },
+          {
+            name: "Яндекс Go",
+            cashback: "15%",
+            logo: "https://avatars.mds.yandex.net/get-bunker/281033/b94475b5c40fb2ab8b9b1e4e5e558fc3b2bea91f/orig",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "На все виды поездок и доставки",
+              "Максимум 750 ₽ в месяц суммарно с Такси",
+            ],
+          },
+          {
+            name: "Делимобиль",
+            cashback: "7%",
+            logo: "https://logo.clearbit.com/delimobil.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка в приложении",
+              "На аренду авто от 30 минут",
+              "Начисляется в течение 3 дней",
+            ],
+          },
         ],
       },
       {
@@ -534,9 +1852,36 @@ export const banks: Bank[] = [
         name: "Развлечения",
         emoji: "🎬",
         stores: [
-          { name: "Кинопоиск", cashback: "15%", logo: "https://logo.clearbit.com/kinopoisk.ru" },
-          { name: "Яндекс Музыка", cashback: "12%", logo: "https://logo.clearbit.com/yandex.ru" },
-          { name: "IVI", cashback: "6%", logo: "https://logo.clearbit.com/ivi.ru" },
+          {
+            name: "Кинопоиск",
+            cashback: "15%",
+            logo: "https://avatars.mds.yandex.net/get-kinopoisk-hdimg/1600647/fc3e8a4c-8a87-47b1-a5ad-bc3fa51e3a22/orig",
+            conditions: [
+              "Оплата картой Яндекс Банка при подписке Яндекс Плюс",
+              "Максимальный кэшбэк в экосистеме Яндекс",
+              "Суммируется с баллами Плюса",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Яндекс Музыка",
+            cashback: "12%",
+            logo: "https://logo.clearbit.com/yandex.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка при покупке подписки",
+              "Только для подписки Яндекс Плюс с Музыкой",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "IVI",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/ivi.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка при покупке подписки",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
       {
@@ -544,9 +1889,36 @@ export const banks: Bank[] = [
         name: "Спорт",
         emoji: "🏋️",
         stores: [
-          { name: "Спортмастер", cashback: "5%", logo: "https://logo.clearbit.com/sportmaster.ru" },
-          { name: "Decathlon", cashback: "5%", logo: "https://logo.clearbit.com/decathlon.ru" },
-          { name: "Nike", cashback: "6%", logo: "https://logo.clearbit.com/nike.com" },
+          {
+            name: "Спортмастер",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/sportmaster.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка в магазине или онлайн",
+              "Минимальная сумма 1 000 ₽",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Decathlon",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/decathlon.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "Без ограничений по сумме",
+              "Начисляется в течение 3 дней",
+            ],
+          },
+          {
+            name: "Nike",
+            cashback: "6%",
+            logo: "https://logo.clearbit.com/nike.com",
+            conditions: [
+              "Оплата картой Яндекс Банка на nike.com",
+              "Только товары по полной цене",
+              "Начисляется в течение 14 дней",
+            ],
+          },
         ],
       },
       {
@@ -554,9 +1926,35 @@ export const banks: Bank[] = [
         name: "Дети и игрушки",
         emoji: "🧸",
         stores: [
-          { name: "Детский мир", cashback: "7%", logo: "https://logo.clearbit.com/detmir.ru" },
-          { name: "Яндекс Маркет", cashback: "10%", logo: "https://logo.clearbit.com/market.yandex.ru" },
-          { name: "Кораблик", cashback: "5%", logo: "https://logo.clearbit.com/korablik.ru" },
+          {
+            name: "Детский мир",
+            cashback: "7%",
+            logo: "https://logo.clearbit.com/detmir.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка в магазине или онлайн",
+              "Суммируется с бонусами Детского мира",
+              "Начисляется в течение 5 дней",
+            ],
+          },
+          {
+            name: "Яндекс Маркет",
+            cashback: "10%",
+            logo: "https://logo.clearbit.com/market.yandex.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка",
+              "Суммируется с баллами Яндекс Плюс",
+              "Начисляется после получения заказа",
+            ],
+          },
+          {
+            name: "Кораблик",
+            cashback: "5%",
+            logo: "https://logo.clearbit.com/korablik.ru",
+            conditions: [
+              "Оплата картой Яндекс Банка в магазине или онлайн",
+              "Начисляется в течение 5 дней",
+            ],
+          },
         ],
       },
     ],
