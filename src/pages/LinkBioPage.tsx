@@ -90,7 +90,7 @@ function BankList({ onSelect }: { onSelect: (bank: Bank) => void }) {
               <div className="flex items-center gap-4 px-4 py-4">
                 <BankLogo bank={bank} size={44} />
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-[15px] font-semibold text-gray-800 text-center">{bank.name}</h3>
+                  <h3 className="text-[15px] font-semibold text-gray-800 text-left">{bank.name}</h3>
                   <p className="text-[12px] text-gray-500 mt-0.5">{bank.categories.length} категорий</p>
                 </div>
                 <div className="flex items-center gap-2">
